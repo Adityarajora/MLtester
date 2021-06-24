@@ -1,0 +1,1114 @@
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <!-- Plus icon -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Custom neural network</title>
+
+      <style>
+          .btn-primary:hover {
+                                color: white!important;
+                                background-color: black;
+                                border-color: white;
+                            }
+
+          .btn-primary {
+                        color: black!important;
+                        background-color: #ffc107;
+                        border-color: black;
+                            font-size: 14px;
+
+                    }
+          .btn-primary:focus {
+                                color: black!important;
+                                background-color:#ffc107;
+                                     border-color: black!important;
+                                     box-shadow: unset;
+                            }
+
+          html, body {
+                      height: 100%;
+                    }
+
+          body {
+                  display: -ms-flexbox;
+
+                  -ms-flex-align: center;
+                  align-items: center;
+                  padding-top: 10px;
+                  padding-bottom: 10px;
+                  background-color: black;
+                }
+          .col-box{
+              border: 0px solid white;
+              position: relative;
+              height: 500px;
+              z-index: 1;
+          }
+          .col-3{
+              border: 0px solid white;
+
+
+          }
+        .plus-button {
+    width: 34px;
+    height: 28px;
+    padding-top: 0%;
+    padding-left: 13%;
+            margin-right: 5px;
+            color: white!important;
+            background-color: black;
+            border-color: white;
+}
+        .plus-button:hover {
+             box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 1) ;
+        }
+
+
+
+          .plus-icon{
+
+                  color: white;
+          }
+           .minus-icon{
+
+                  color: gray;
+          }
+          .container.super{
+              margin-top: 20px;
+          }
+          .col{
+              display: block;
+              width: 105px;
+          }
+          .container.X{
+              width: auto;
+              padding: 0%;
+              margin-left: -36px;
+          }
+          .neuron {
+              width: 50px;
+              height: 50px;
+              background-color: black;
+              padding-left: 19%;
+              padding-top: 13%;
+              margin-top: 30%;
+              margin-left: 14%;
+              border-radius: 33px;
+              border: 1px solid white;
+              box-shadow: 0px 0px 2px 2px rgba(255, 255, 255, 0.4) ;
+          }
+
+          .neuron:hover {
+                box-shadow: 0px 0px 4px 4px rgba(255, 255, 255, 1) ;
+
+          }
+          body {
+   transform: scale(1);
+     }
+
+
+.box {
+  position: relative;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.box select {
+          background-color:#ffc107;
+    color: black;
+    border: 1px solid #ffc107;
+    border-radius: 3px;
+    width: 73px;
+    font-size: 10px;
+    padding: 3px 5px 3px 0px;
+
+}
+.box select:hover{
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 2px;
+    color:white;
+}
+
+.box::before {
+  font-family: FontAwesome;
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 20px;
+}
+
+#summary{
+    border: 0px solid white;
+}
+h11{
+     font-size: 10px;
+    display: block;
+    overflow: hidden;
+    color: #cccccc;
+    margin-left: 30px;
+    padding: 75px 4px 0px 1px;
+}
+.shape{
+        width: 70%;
+    font-size: 10px;
+    margin: auto;
+}
+
+ table {
+                              border-collapse: collapse;
+                              border-radius: 5px;
+                              box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+                              overflow: hidden;
+                              font-family: "Quicksand", sans-serif;
+                              font-weight: bold;
+                              font-size: 14px;
+                               margin: auto;
+                            }
+
+                            th {
+                              background: #ffc107;
+                              color: black;
+                              text-align: left;
+                            }
+
+                            th,
+                            td {
+                              padding: 10px 20px;
+                            }
+
+                            tr:nth-child(even) {
+                              background: black;
+                                color: #666666;
+                            }
+                            tr:nth-child(odd) {
+                              background: black;
+                                color: #666666;
+                            }
+
+                                #make-box {
+                                    height: 78%;
+                                    width: 100%;
+                                    position: absolute;
+                                    overflow: auto;
+                                    /* margin-left: 29%; */
+                                    border: 0px solid white;
+                                    /* margin-top: 20px; */
+                                    margin-left: -8px;
+                                    }
+                                 #make-box:hover {
+
+                                     /*box-shadow: 0px 0px 6px 6px rgba(255, 255, 255, 0.8);*/
+                                 }
+
+
+
+                                                 /* width */
+                ::-webkit-scrollbar {
+                  width: 10px;
+                    height: 10px;
+                }
+
+                /* Track */
+                ::-webkit-scrollbar-track {
+                  box-shadow: inset 0 0 5px grey;
+                  border-radius: 10px;
+                }
+
+                /* Handle */
+                ::-webkit-scrollbar-thumb {
+                  background: black;
+                  border-radius: 10px;
+                    border: 1px solid white;
+
+                }
+
+                /* Handle on hover */
+                ::-webkit-scrollbar-thumb:hover {
+                  background-color: #262626;
+                    border: 1px solid white;
+
+                }
+
+                .show{
+                        margin-left: auto;
+                        font-size: 10px;
+                        width: 100%;
+                        margin-top: 2px;
+
+                }
+
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: black;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+      overflow: auto;
+    height: 60%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#inputcol{
+    font-size: 10px;
+    margin-top: 2px;
+}
+.loss select {
+        background-color: #ffc107;
+    color: black;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 10px;
+    padding: 5px 5px 5px 0px;
+    /* margin-left: 23%; */
+    margin-top: 3px;
+}
+.loss select:hover{
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 2px;
+    color:white;
+}
+#output{
+    color: #ffc107;
+    text-align: center;
+}
+#heading{
+    color: #ffc107;
+    text-align: center;
+}
+#summary{
+    color: #ffc107;
+    text-align: center;
+}
+.minus-button {
+    width: 34px;
+    height: 28px;
+    padding-top: 0%;
+    padding-left: 13%;
+            margin-right: 5px;
+            color: white!important;
+            background-color: black;
+            border-color: white;
+}
+        .minus-button:hover {
+             box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 1) ;
+        }
+      </style>
+  </head>
+  <body onresize="resize()">
+
+
+    <div class="container super">
+        <div class="col-md-12 text-center">
+            <button type="button" class="btn btn-primary" id="add-layer">Add hidden layer</button>
+            <button type="button" class="btn btn-primary" id="del-layer">Del hidden layer</button>
+            <button type="button" class="btn btn-primary" id="train">Train</button>
+        </div>
+
+    </div>
+    <div class="container super">
+     <div class="row">
+           <div class="col-3">
+
+               <!-- One upload buttons -->
+               <div class="shape">
+                        <div class="custom-file mb-3">
+                                  <input type="file" class="custom-file-input" id="customFile" name="train">
+                                  <label class="custom-file-label" for="customFile" name="train">Training dataset</label>
+                             <button type="button" class="btn btn-primary show" id="myBtn">Display</button>
+                             <input style="background-color:black" type="text" id="inputcol" name="lb_col" class="form-control" placeholder="Ground truth column...." required autofocus>
+                            <div class="loss">
+                                  <select id="loss-id">
+                                    <option value="0">binary_crossentropy</option>
+                                    <option value="1">categorical_crossentropy</option>
+                                    <option value="2">sparse_categorical_crossentropy</option>
+                                    <option value="3">mean_absolute_error</option>
+                                    <option value="4">cosine_similarity</option>
+                                  </select>
+
+                            </div>
+                            <div id="output">
+
+                            </div>
+                        </div>
+
+              </div>
+
+           </div>
+
+          <div class="col-6 col-box" id="buttons-space">
+
+                 <div id="heading">
+                <h9>create your neural network using buttons above!</h9>
+                 </div>
+
+          </div>
+          <div class="col-3">
+              <div id="summary">
+
+              </div>
+           </div>
+
+        </div>
+    </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+    <div class="temp-line">
+
+    </div>
+
+ <div id="myModal" class="modal">
+
+                          <!-- Modal content -->
+                          <div class="modal-content">
+                            <span class="close">&times;</span>
+                              <hr style="color:white">
+                               <div class="row">
+                                     <div class="col-xl" id="make-box">
+                                     <table id="csvRoot"></table>
+                                    </div>
+                                </div>
+
+                          </div>
+
+                       </div>
+    <div id="lines">
+
+    </div>
+
+    <script>
+        // Add the following code if you want the name of the file appear on select
+
+        $(".custom-file-input").on("change", function() {
+          var fileName = $(this).val().split("\\").pop();
+          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+  <script>
+
+
+
+var layer_obj_arr = [];
+var layer_id_to_obj_dict = {};
+
+var cnt = 0;
+var neuron_cnt = 0;
+let YY = 0;
+let XX = 0;
+let y_shift_dict = {}
+let block_lines = false
+let save = null
+
+     class Layer {
+          constructor(id, left_shift=-1) {
+            this.id = id;
+            this.left_shift = left_shift;
+            this.neuron_arr = [];
+            this.trait = "";
+          }
+        }
+     class Neuron{
+          constructor(id, layer_id=-1, html_data="", x=null, y=null) {
+            this.id = id;
+            this.layer_id = layer_id;
+            this.html_data = html_data;
+            this.x = x;
+            this.y = y;
+          }
+     }
+
+
+var layerSpace = document.getElementById('buttons-space')
+var addClass = document.getElementById('add-layer')
+addClass.addEventListener('click', add_hidden_layer)
+
+var trainEvent = document.getElementById('train')
+trainEvent.addEventListener('click', store_position)
+
+var delLayer = document.getElementById('del-layer')
+delLayer.addEventListener('click', del_hidden_layer)
+
+
+
+function del_hidden_layer(event){
+    if (cnt == 0)
+    {
+        console.log("No hidden layer available....!")
+        return;
+    }
+    cnt -= 1;
+    console.log("del_hidden_layer")
+    let last_layer = layer_obj_arr.pop()
+    let butt_no = last_layer.id.toString()
+    let del_layer = document.getElementById('buttcont-'+butt_no)
+    del_layer.innerHTML = "";
+       let k = "butt_" + butt_no;
+
+             if (k in y_shift_dict) {
+                 delete y_shift_dict[k];
+                 console.log(k, "deleted from y_shift_dict")
+             }
+    adjust_pos_draw_layer();
+
+}
+
+function select_action(event){
+     let butt_no = event.target.id.slice(-1);
+    let e = document.getElementById('select-'+butt_no);
+    console.log(e, e.value, butt_no)
+    layer_id_to_obj_dict[parseInt(butt_no)].trait=e.value;
+    console.log(layer_id_to_obj_dict)
+}
+
+function sleep(milliseconds) {
+   let currentTime = new Date().getTime();
+
+   while (currentTime + milliseconds >= new Date().getTime()) {
+   }
+}
+
+function getToken(name) {
+                    let cookieValue = null;
+                    if (document.cookie && document.cookie !== '') {
+                        const cookies = document.cookie.split(';');
+                        for (let i = 0; i < cookies.length; i++) {
+                            const cookie = cookies[i].trim();
+                            // Does this cookie string begin with the name we want?
+                            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+
+
+function f(x){
+    let e = document.getElementById('summary');
+    e.innerHTML = '<h11>' + x['summary'] + '</h11>';
+
+    let o = document.getElementById('output');
+    o.innerHTML = '<h10>' + 'train_accuracy-> ' + parseFloat(x['train_accuracy']).toFixed(4) + '</h10><br>'
+                + '<h10>' + 'test_accuracy-> ' + parseFloat(x['test_accuracy']).toFixed(4)  + '</h10>' ;
+}
+
+function store_position(event){
+
+
+
+    let e = document.getElementById('summary');
+    e.innerHTML = '<h9>' + 'waiting.....' + '</h9>';
+    const formData = new FormData();
+
+    const csrftoken = getToken('csrftoken');
+    let loss = document.getElementById(('loss-id'))
+    let gt = document.getElementById('inputcol')
+    let file = document.getElementById('customFile')
+    console.log("LOSS-ID",loss.value)
+    console.log("INPUT-COL",gt.value)
+    console.log("FILE", file.value)
+
+
+    const fileField = document.querySelector('input[type="file"]');
+    console.log('avatar', fileField.files[0]);
+    formData.append('file', fileField.files[0])
+    formData.append('loss', loss.value)
+    formData.append('gt', gt.value)
+    formData.append("layers", JSON.stringify(layer_obj_arr))
+
+    console.log("User is logged in, sending data..",formData)
+    var url = "/custom_neural_network/"
+    fetch(url, {
+        method: 'POST',
+        headers: {'X-CSRFToken':csrftoken},
+        body: formData
+    })
+    .then((response) =>{return response.json()})
+    .then((data) =>{console.log('data:', data);f(data);})
+
+
+
+}
+
+
+function add_neurons(event) {
+
+ let plus = false;
+  let minus = false;
+  console.log(event)
+
+
+
+      let butt_no = event.target.id.slice(-1);
+
+
+
+     neuron_cnt += 1;
+
+     let neuron = new Neuron(neuron_cnt, parseInt(butt_no));
+
+     console.log("dict->", layer_id_to_obj_dict)
+     console.log('BUT-->', butt_no)
+     if (layer_id_to_obj_dict[parseInt(butt_no)].neuron_arr.length > 9)
+     {
+         return;
+     }
+     layer_id_to_obj_dict[parseInt(butt_no)].neuron_arr.push(neuron);
+
+     let t = document.getElementById('buttcont-'+butt_no);
+     let neuron_html = '<div class="row" id="del-' + butt_no + neuron_cnt  + '"><div class="col" id="ncont-' + butt_no +  '"><div class="neuron" id="nkhud-' + butt_no + '">' +
+         '<div id="dot-' + butt_no + '"><h10>.</h10></div></div></div></div>'
+     t.innerHTML = t.innerHTML + neuron_html;
+
+     neuron.html_data = neuron_html;
+
+
+
+      let e = document.getElementById('butt-' + butt_no);
+      e.addEventListener('click', add_neurons)
+     let e0 = document.getElementById('buttmin-' + butt_no);
+      e0.addEventListener('click', del_neurons)
+
+      let selecteve = document.getElementById('select-'+butt_no);
+   selecteve.addEventListener('change', select_action)
+
+
+             let xxx = document.getElementsByClassName('col-box')[0];
+            console.log("COL-BOX", xxx.offsetLeft, xxx.offsetTop);
+            let x1 = xxx.offsetLeft;
+            let y1 =  xxx.offsetTop;
+
+              let xx = document.getElementById('buttcont-'+butt_no);
+              console.log("buttcont", xx.offsetLeft, xx.offsetTop);
+               let x2 = xx.offsetLeft;
+            let y2 =  xx.offsetTop;
+
+           let x = document.getElementById('ncont-'+butt_no);
+          console.log("ncont", x.offsetLeft, x.offsetTop);
+           let x3 = x.offsetLeft;
+            let y3 =  x.offsetTop;
+
+           let a = document.getElementById('nkhud-'+butt_no);
+          console.log("Neukhud", a.offsetLeft, a.offsetTop);
+           let x4 = a.offsetLeft;
+            let y4 =  a.offsetTop;
+
+
+
+           let aa = document.getElementById('dot-'+butt_no);
+          console.log("dot", aa.offsetLeft, aa.offsetTop);
+           let x5 = aa.offsetLeft;
+            let y5 =  aa.offsetTop;
+
+
+               let k = "butt_"+butt_no;
+                 if (k in y_shift_dict){
+                     y_shift_dict[k] += 65+10;
+                 }
+                 else{
+                     y_shift_dict[k] = 0;
+                 }
+            let X = x1+x2+x3+x4+x5-13;
+            let Y = y1+y2+y3+y4+25+y_shift_dict[k];
+
+            console.log("X:",X,"Y:",Y)
+            neuron.x = X;
+            neuron.y = Y;
+
+
+        redraw()
+
+
+
+
+ }
+
+ function del_neurons(event){
+
+    console.log(("del_neuron"))
+      let butt_no = event.target.id.slice(-1);
+    let neu = layer_id_to_obj_dict[parseInt(butt_no)].neuron_arr;
+    if (neu.length == 0){
+        console.log("No neurons to delete....!")
+        return;
+    }
+
+        let last_neuron = layer_id_to_obj_dict[parseInt(butt_no)].neuron_arr.slice(-1)[0];
+
+        let neuron_id = last_neuron.id;
+
+         console.log('del-'+butt_no+neuron_id.toString(), last_neuron)
+
+         let n = document.getElementById('del-'+butt_no+neuron_id.toString())
+         if (n != null) {
+             n.innerHTML = "";
+
+             layer_id_to_obj_dict[parseInt(butt_no)].neuron_arr.pop();
+
+             let e0 = document.getElementById('buttmin-' + butt_no);
+             e0.addEventListener('click', del_neurons)
+             let k = "butt_" + butt_no;
+             if (k in y_shift_dict) {
+                 y_shift_dict[k] -= (65 + 10);
+             }
+             if (layer_id_to_obj_dict[parseInt(butt_no)].neuron_arr.length == 0){
+                  document.getElementById("lines").innerHTML = "";
+                  block_lines = true;
+                  save = butt_no;
+                 return;
+
+             }
+
+
+                     redraw();
+
+         }
+ }
+
+function show_layer(curr_obj, add_layer_str) {
+
+     var l = curr_obj.left_shift.toString() + "%";
+
+     var html_l_s = 'left:' + l + ';';
+
+
+     var temp0 = '<div class="col"' + ' id="' + 'buttdiv-' + curr_obj.id.toString() + '">'
+     let temp1 = '<div class="box">\
+                  <select id="select-' + curr_obj.id.toString() + '">\
+                    <option value="0">sigmoid</option>\
+                    <option value="1">relu</option>\
+                    <option value="2">softmax</option>\
+                    <option value="3">softplus</option>\
+                    <option value="4">softsign</option>\
+                    <option value="5">dropout</option>\
+                  </select>\
+                </div>'
+
+     var temp2 = '<div><button class="btn btn-primary plus-button" id="butt-' + curr_obj.id.toString() + '"><span style="pointer-events:none">+</span></button>' +
+         '<button class="btn btn-primary minus-button" id="buttmin-' + curr_obj.id.toString() + '"><span style="pointer-events:none">-</span></button></div></div>';
+
+    var str = temp0 + temp1 + temp2;
+
+
+    let html_data_str = "";
+
+
+     for(let i=0;i<curr_obj.neuron_arr.length;i++)
+     {
+        let neuron_obj =  curr_obj.neuron_arr[i];
+        let html_data = neuron_obj.html_data;
+        html_data_str += html_data;
+     }
+     str = '<div class="container X" id="buttcont-' +curr_obj.id.toString() + '" style="' + html_l_s + 'position:absolute; border: 0px solid white"><div class="row">' + str + '' +
+         '</div>' + html_data_str + '</div>'
+
+     add_layer_str += str;
+
+     return add_layer_str
+
+ }
+
+
+ function adjust_pos_draw_layer(){
+
+    let w = document.getElementsByClassName('col-6')[0].offsetWidth;
+    let div_w = 0;
+
+
+    if (cnt != 1) {
+        div_w = parseInt(w) / (cnt - 1);
+    }
+
+
+    let gap = (div_w/w)*100;
+    let left_shift = 0;
+    let add_layer_str = ""
+    let temp = 12/cnt;
+     for(let i=0; i<layer_obj_arr.length; i++) {
+
+            let curr_obj = layer_obj_arr[i];
+            curr_obj.left_shift = left_shift;
+
+            add_layer_str = show_layer(curr_obj, add_layer_str);
+
+            left_shift += gap;
+
+            layerSpace.innerHTML = add_layer_str;
+
+           let butt_no = curr_obj.id.toString()
+                 let xxx = document.getElementsByClassName('col-box')[0];
+            let x1 = xxx.offsetLeft;
+            let y1 =  xxx.offsetTop;
+
+              let xx = document.getElementById('buttcont-'+butt_no);
+              console.log("buttcont", xx.offsetLeft, xx.offsetTop);
+               let x2 = xx.offsetLeft;
+            let y2 =  xx.offsetTop;
+
+             for(let i=0;i<curr_obj.neuron_arr.length;i++)
+                 {
+                    let neuron_obj =  curr_obj.neuron_arr[i];
+                    let X = x1+x2-12+23+40-13;
+                    neuron_obj.x = X;
+                 }
+
+                            redraw();
+
+         }
+         for(let i=0;i<layer_obj_arr.length;i++)
+            {
+                let curr_obj = layer_obj_arr[i];
+                let e = document.getElementById('butt-' + curr_obj.id.toString());
+                e.addEventListener('click', add_neurons);
+                 var selecteve = document.getElementById('select-'+curr_obj.id.toString());
+           selecteve.addEventListener('change', select_action)
+                 let e0 = document.getElementById('buttmin-' + curr_obj.id.toString());
+                e0.addEventListener('click', del_neurons);
+            }
+
+ }
+function add_hidden_layer(event){
+ document.getElementById("lines").innerHTML = "";
+
+    cnt += 1;
+
+    if (cnt>6)
+    {
+        console.log("Not any more hidden layers..!");
+        return;
+    }
+
+    if (cnt == 1) {
+        let e = document.getElementById('heading');
+        if (e != null)
+         e.innerHTML = "";
+    }
+
+
+    let layer_obj = new Layer(cnt);
+
+    console.log(layer_obj);
+    layer_obj_arr.push(layer_obj);
+    layer_id_to_obj_dict[layer_obj.id] = layer_obj;
+
+
+
+   adjust_pos_draw_layer();
+
+
+
+}
+
+function check_len(x){
+    return x>0;
+}
+
+function redraw(){
+    document.getElementById("lines").innerHTML = "";
+
+    if (layer_obj_arr.length < 2){
+        console.log("Not enough neurons!");
+        return;
+
+    }
+    let len = [];
+    for(let i=0;i<layer_obj_arr.length;i++)
+    {
+        len.push(layer_obj_arr[i].neuron_arr.length);
+    }
+
+    if (!len.every(check_len)){
+        console.log('Disconnected NN!')
+        return;
+    }
+
+
+     for(let i=0;i<layer_obj_arr.length-1;i++)
+    {
+
+        let layer_obj1 = layer_obj_arr[i];
+        let layer_obj2 = layer_obj_arr[i+1];
+        let neuron_arr1 = layer_obj1.neuron_arr;
+        let neuron_arr2 = layer_obj2.neuron_arr;f.col
+        for(let i=0;i<neuron_arr1.length; i++)
+        {
+              let start = neuron_arr1[i];
+              let x1 = start.x;
+              let y1 = start.y;
+              for(let i=0;i<neuron_arr2.length; i++)
+                {
+                     let end = neuron_arr2[i];
+                     let x2 = end.x;
+                     let y2 = end.y;
+
+                     createLine(x1, y1, x2, y2);
+
+                }
+
+
+        }
+
+    }
+
+}
+
+function resize(){
+
+     for(let i=0; i<layer_obj_arr.length; i++) {
+
+            let curr_obj = layer_obj_arr[i];
+
+
+            let butt_no = curr_obj.id.toString()
+            let xxx = document.getElementsByClassName('col-box')[0];
+            let x1 = xxx.offsetLeft;
+            let y1 =  xxx.offsetTop;
+
+              let xx = document.getElementById('buttcont-'+butt_no);
+              console.log("buttcont", xx.offsetLeft, xx.offsetTop);
+               let x2 = xx.offsetLeft;
+            let y2 =  xx.offsetTop;
+
+             for(let i=0;i<curr_obj.neuron_arr.length;i++)
+                 {
+                    let neuron_obj =  curr_obj.neuron_arr[i];
+                    let X = x1+x2-12+23+40-13;
+                    console.log("New:",X,"|","Old:",neuron_obj.x)
+                    neuron_obj.x = X;
+                 }
+
+
+
+
+    }
+
+     redraw();
+
+
+}
+
+function createLineElement(x, y, length, angle) {
+    var line = document.createElement("div");
+    var line0 = document.getElementsByClassName("temp-line")[0];
+
+    var styles = 'border: 1px solid white; '
+               + 'width: ' + length + 'px; '
+               + 'height: 0px; '
+               + '-moz-transform: rotate(' + angle + 'rad); '
+               + '-webkit-transform: rotate(' + angle + 'rad); '
+               + '-o-transform: rotate(' + angle + 'rad); '
+               + '-ms-transform: rotate(' + angle + 'rad); '
+               + 'position: absolute; '
+               + 'top: ' + y + 'px; '
+               + 'left: ' + x + 'px; ';
+    line.setAttribute('style', styles);
+document.getElementById("lines").appendChild(line)
+}
+
+function createLine(x1, y1, x2, y2) {
+    var a = x1 - x2,
+        b = y1 - y2,
+        c = Math.sqrt(a * a + b * b);
+
+    var sx = (x1 + x2) / 2,
+        sy = (y1 + y2) / 2;
+
+    var x = sx - c / 2,
+        y = sy;
+
+    var alpha = Math.PI - Math.atan2(-b, a);
+
+    return createLineElement(x, y, c, alpha);
+}
+
+
+
+class TableCsv {
+  /**
+   * @param {HTMLTableElement} root The table element which will display the CSV data.
+   */
+  constructor(root) {
+    this.root = root;
+  }
+
+  /**
+   * Clears existing data in the table and replaces it with new data.
+   *
+   * @param {string[][]} data A 2D array of data to be used as the table body
+   * @param {string[]} headerColumns List of headings to be used
+   */
+  update(data, headerColumns = []) {
+    this.clear();
+    this.setHeader(headerColumns);
+    this.setBody(data);
+  }
+
+  /**
+   * Clears all contents of the table (incl. the header).
+   */
+  clear() {
+    this.root.innerHTML = "";
+  }
+
+  /**
+   * Sets the table header.
+   *
+   * @param {string[]} headerColumns List of headings to be used
+   */
+  setHeader(headerColumns) {
+    this.root.insertAdjacentHTML(
+      "afterbegin",
+      `
+            <thead>
+                <tr>
+                    ${headerColumns.map((text) => `<th>${text}</th>`).join("")}
+                </tr>
+            </thead>
+        `
+    );
+  }
+
+  /**
+   * Sets the table body.
+   *
+   * @param {string[][]} data A 2D array of data to be used as the table body
+   */
+  setBody(data) {
+    const rowsHtml = data.map((row) => {
+      return `
+                <tr>
+                    ${row.map((text) => `<td>${text}</td>`).join("")}
+                </tr>
+            `;
+    });
+
+    this.root.insertAdjacentHTML(
+      "beforeend",
+      `
+            <tbody>
+                ${rowsHtml.join("")}
+            </tbody>
+        `
+    );
+  }
+}
+
+const tableRoot = document.querySelector("#csvRoot");
+const csvFileInput = document.querySelector("#customFile");
+const tableCsv = new TableCsv(tableRoot);
+
+csvFileInput.addEventListener("change", (e) => {
+  Papa.parse(csvFileInput.files[0], {
+    delimiter: ",",
+    skipEmptyLines: true,
+    complete: (results) => {
+      tableCsv.update(results.data.slice(1), results.data[0]);
+    }
+  });
+});
+
+
+
+
+  </script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.2.0/papaparse.min.js"></script>
+  <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+  </body>
+</html>
